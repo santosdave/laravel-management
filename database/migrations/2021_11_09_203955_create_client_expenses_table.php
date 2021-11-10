@@ -14,8 +14,12 @@ class CreateClientExpensesTable extends Migration
     public function up()
     {
         Schema::create('client_expenses', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('c_exp_id');
+            $table->unsignedBigInteger('c_service_id');
             $table->timestamps();
+            $table->foreign('c_service_id')
+                ->references('service_id')->on('services')
+                ->onDelete('cascade');
         });
     }
 

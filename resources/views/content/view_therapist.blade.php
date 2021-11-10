@@ -4,18 +4,21 @@
             <div class="card-header">
                 <h2>{{$title}}</h2>
                 <div class="d-flex flex-row-reverse"><button
-                        class="btn btn-sm btn-pill btn-outline-primary font-weight-bolder" id="createNewUser"><i
+                        class="btn btn-sm btn-pill btn-outline-primary font-weight-bolder" id="createNewTherapist"><i
                             class="fas fa-plus"></i>Add Therapist </button></div>
             </div>
             <div class="card-body">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table" id="tableUser">
+                        <table class="table" id="tableTherapist">
                             <thead class="font-weight-bold text-center">
                                 <tr>
                                     {{-- <th>No.</th> --}}
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Department</th>
                                     <th>Level</th>
                                     <th style="width:90px;">Action</th>
                                 </tr>

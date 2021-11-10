@@ -4,19 +4,18 @@
             <div class="card-header">
                 <h2>{{$title}}</h2>
                 <div class="d-flex flex-row-reverse"><button
-                        class="btn btn-sm btn-pill btn-outline-primary font-weight-bolder" id="createNewUser"><i
-                            class="fas fa-plus"></i>Add User </button></div>
+                        class="btn btn-sm btn-pill btn-outline-primary font-weight-bolder" id="createNewDepartment"><i
+                            class="fas fa-plus"></i>Add Department </button></div>
             </div>
             <div class="card-body">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table" id="tableUser">
+                        <table class="table" id="tableDepartment">
                             <thead class="font-weight-bold text-center">
                                 <tr>
                                     {{-- <th>No.</th> --}}
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Level</th>
+                                    <th>Details</th>
                                     <th style="width:90px;">Action</th>
                                 </tr>
                             </thead>
@@ -48,24 +47,18 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white" id="exampleModalLabel">Modal User</h5>
+                <h5 class="modal-title text-white" id="exampleModalLabel">Modal Department</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formUser" name="formUser">
+                <form id="formDepartment" name="formDepartment">
                     <div class="form-group">
 
                         <input type="text" name="name" class="form-control" id="name" placeholder="Name"><br>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="email"><br>
-                        <select name="level" class="form-control" id="level">
-                            <option value="-">User Level</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Therapist</option>
-                        </select><br>
-                        <input type="text" name="password" class="form-control" placeholder="password"><br>
-                        <input type="hidden" name="user_id" id="user_id" value="">
+                        <input type="text" name="details" class="form-control" id="details" placeholder="Details"><br>
+                        <input type="hidden" name="dept_id" id="dept_id" value="">
                     </div>
                 </form>
             </div>
@@ -102,7 +95,7 @@
             })
         }
         // table serverside
-        var table = $('#tableUser').DataTable({
+        var table = $('#tableDepartment').DataTable({
             processing: false,
             serverSide: true,
             ordering: false,
@@ -110,24 +103,20 @@
             buttons: [
                 'copy', 'excel', 'pdf'
             ],
-            ajax: "{{ route('users.index') }}",
+            ajax: "{{ route('department.index') }}",
             columns: [{
                     data: 'name',
                     name: 'name'
                 },
                 {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
-                    data: 'level',
-                    name: 'level'
+                    data: 'details',
+                    name: 'details'
                 },
                 {
                     data: 'action',
                     name: 'action',
-                    orderable: false,
-                    searchable: false
+                    orderable: true,
+                    searchable: true
                 },
             ]
         });
@@ -139,22 +128,21 @@
             }
         });
         // initialize btn add
-        $('#createNewUser').click(function () {
-            $('#saveBtn').val("create user");
-            $('#user_id').val('');
-            $('#formUser').trigger("reset");
+        $('#createNewDepartment').click(function () {
+            $('#saveBtn').val("create department");
+            $('#dept_id').val('');
+            $('#formDepartment').trigger("reset");
             $('#modal-user').modal('show');
         });
         // initialize btn edit
-        $('body').on('click', '.editUser', function () {
+        $('body').on('click', '.editDepartment', function () {
             var user_id = $(this).data('id');
-            $.get("{{route('users.index')}}" + '/' + user_id + '/edit', function (data) {
-                $('#saveBtn').val("edit-user");
+            $.get("{{route('department.index')}}" + '/' + user_id + '/edit', function (data) {
+                $('#saveBtn').val("edit-department");
                 $('#modal-user').modal('show');
-                $('#user_id').val(data.id);
+                $('#dept_id').val(data.id);
                 $('#name').val(data.name);
-                $('#email').val(data.email);
-                $('#level').val(data.level);
+                $('#details').val(data.details);
             })
         });
         // initialize btn save
@@ -163,13 +151,13 @@
             $(this).html('Save');
 
             $.ajax({
-                data: $('#formUser').serialize(),
-                url: "{{ route('users.store') }}",
+                data: $('#formDepartment').serialize(),
+                url: "{{ route('department.store') }}",
                 type: "POST",
                 dataType: 'json',
                 success: function (data) {
 
-                    $('#formUser').trigger("reset");
+                    $('#formDepartment').trigger("reset");
                     $('#modal-user').modal('hide');
                     swal_success();
                     table.draw();
@@ -183,8 +171,8 @@
 
         });
         // initialize btn delete
-        $('body').on('click', '.deleteUser', function () {
-            var user_id = $(this).data("id");
+        $('body').on('click', '.deleteDepartment', function () {
+            var dept_id = $(this).data("id");
 
             Swal.fire({
                 title: 'Are you sure?',
@@ -198,7 +186,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "DELETE",
-                        url: "{{route('users.store')}}" + '/' + user_id,
+                        url: "{{route('department.store')}}" + '/' + dept_id,
                         success: function (data) {
                             swal_success();
                             table.draw();

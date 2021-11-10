@@ -58,7 +58,6 @@
 
                         <input type="text" name="name" class="form-control" id="name" placeholder="Name"><br>
                         <input type="text" name="details" class="form-control" id="details" placeholder="Details"><br>
-                        <input type="hidden" name="dept_id" id="dept_id" value="">
                     </div>
                 </form>
             </div>
@@ -105,11 +104,11 @@
             ],
             ajax: "{{ route('department.index') }}",
             columns: [{
-                    data: 'name',
+                    data: 'dept_name',
                     name: 'name'
                 },
                 {
-                    data: 'details',
+                    data: 'dept_details',
                     name: 'details'
                 },
                 {
@@ -136,13 +135,13 @@
         });
         // initialize btn edit
         $('body').on('click', '.editDepartment', function () {
-            var user_id = $(this).data('id');
-            $.get("{{route('department.index')}}" + '/' + user_id + '/edit', function (data) {
+            var dept_id = $(this).data('id');
+            $.get("{{route('department.index')}}" + '/' + dept_id + '/edit', function (data) {
                 $('#saveBtn').val("edit-department");
                 $('#modal-user').modal('show');
-                $('#dept_id').val(data.id);
-                $('#name').val(data.name);
-                $('#details').val(data.details);
+                $('#dept_id').val(data.dept_id);
+                $('#name').val(data.dept_name);
+                $('#details').val(data.dept_details);
             })
         });
         // initialize btn save

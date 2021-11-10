@@ -5,8 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DepartmentController;
-
-
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeeRoleController;
+use App\Http\Controllers\TherapistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,12 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
-
-
+Route::get('/add_employee', [EmployeeController::class, 'create'])->name('employee.create');
+Route::get('/add_therapist', [EmployeeController::class, 'create'])->name('therapist.create');
 // Route::get('/user.get_data',[UserController::class, 'get_data'])->name('get_data');
 Route::resource('users', UsersController::class);
 Route::resource('department', DepartmentController::class);
+Route::resource('employee_role', EmployeeRoleController::class);
+Route::resource('employee', EmployeeController::class);
+Route::resource('therapist', TherapistController::class);
 

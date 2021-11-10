@@ -24,13 +24,13 @@ class DepartmentController extends Controller
         ];
 
         if ($request->ajax()) {
-            $q_department = Department::select('*')->where('name','!=', '')->orderByDesc('created_at');
+            $q_department = Department::select('*')->where('dept_id','!=', 0)->orderByDesc('created_at');
             return Datatables::of($q_department)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
      
-                        $btn = '<div data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="btn btn-sm btn-icon btn-outline-success btn-circle mr-2 edit editDepartment"><i class=" fi-rr-edit"></i></div>';
-                        $btn = $btn.' <div data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-sm btn-icon btn-outline-danger btn-circle mr-2 deleteDepartment"><i class="fi-rr-trash"></i></div>';
+                        $btn = '<div data-toggle="tooltip"  data-id="'.$row->dept_id.'" data-original-title="Edit" class="btn btn-sm btn-icon btn-outline-success btn-circle mr-2 edit editDepartment"><i class=" fi-rr-edit"></i></div>';
+                        $btn = $btn.' <div data-toggle="tooltip"  data-id="'.$row->dept_id.'" data-original-title="Delete" class="btn btn-sm btn-icon btn-outline-danger btn-circle mr-2 deleteDepartment"><i class="fi-rr-trash"></i></div>';
  
                          return $btn;
                     })
@@ -48,10 +48,10 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
-        Department::updateOrCreate(['id' => $request->user_id],
+        Department::updateOrCreate(['dept_id' => $request->dept_id],
                 [
-                 'name' => $request->name,
-                 'details' => $request->email,
+                 'dept_name' => $request->dept_name,
+                 'dept_details' => $request->dept_details,
                 ]);        
 
         return response()->json(['success'=>'Department saved successfully!']);

@@ -75,13 +75,13 @@
                                 </span>
                             </li>
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="/users" class="menu-link menu-toggle">
+                                <a href="/therapist" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
                                     <span class="menu-text">Therapists</span>
                                     <span class="menu-label">
-                                        <span class="label label-rounded label-primary">{{-- <?= $count_user ?> --}}</span>
+                                        <span class="label label-rounded label-primary"> {{-- {{$count_user}} --}} </span>
                                     </span>
                                     
                                 </a>
@@ -94,7 +94,7 @@
                                     </i>
                                     <span class="menu-text">Clients</span>
                                     <span class="menu-label">
-                                        <span class="label label-rounded label-primary">{{-- <?= $count_user ?> --}}</span>
+                                        <span class="label label-rounded label-primary">{{-- {{$count_user}} --}}</span>
                                     </span>
                                     
                                 </a>
@@ -107,7 +107,7 @@
                                     </i>
                                     <span class="menu-text">Appointments</span>
                                     <span class="menu-label">
-                                        <span class="label label-rounded label-primary">{{-- <?= $count_user ?> --}}</span>
+                                        <span class="label label-rounded label-primary">{{-- {{$count_user}} --}}</span>
                                     </span>
                                     
                                 </a>
@@ -140,7 +140,7 @@
                                     </i>
                                     <span class="menu-text">Department List</span>
                                     <span class="menu-label">
-                                        <span class="label label-rounded label-primary"><?= $count_department ?></span>
+                                        <span class="label label-rounded label-primary">{{-- {{$count_department}} --}}</span>
                                     </span>
                                     
                                 </a>
@@ -167,39 +167,39 @@
                                 </span>
                             </li>
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="/users" class="menu-link menu-toggle">
+                                <a href="/employee_role" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
                                     <span class="menu-text">Employee Roles</span>
                                     <span class="menu-label">
-                                        <span class="label label-rounded label-primary">{{-- <?= $count_user ?> --}}</span>
+                                        <span class="label label-rounded label-primary">{{-- {{$count_user}} --}}</span>
                                     </span>
                                     
                                 </a>
                                 
                             </li>
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="/users" class="menu-link menu-toggle">
+                                <a href="/employee" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
                                     <span class="menu-text">Employee List</span>
                                     <span class="menu-label">
-                                        <span class="label label-rounded label-primary">{{-- <?= $count_user ?> --}}</span>
+                                        <span class="label label-rounded label-primary">{{-- {{$count_user}} --}}</span>
                                     </span>
                                     
                                 </a>
                                 
                             </li>
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="/users" class="menu-link menu-toggle">
+                                <a href="/add_employee" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
                                     <span class="menu-text">Add Employee</span>
                                     <span class="menu-label">
-                                        <span class="label label-rounded label-primary">{{-- <?= $count_user ?> --}}</span>
+                                        <span class="label label-rounded label-primary">{{-- {{$count_user}} --}}</span>
                                     </span>
                                     
                                 </a>
@@ -232,7 +232,7 @@
                                     </i>
                                     <span class="menu-text">Appointment Report</span>
                                     <span class="menu-label">
-                                        <span class="label label-rounded label-primary">{{-- <?= $count_user ?> --}}</span>
+                                        <span class="label label-rounded label-primary">{{-- {{$count_user}} --}}</span>
                                     </span>
                                     
                                 </a>
@@ -245,7 +245,7 @@
                                     </i>
                                     <span class="menu-text">User Report</span>
                                     <span class="menu-label">
-                                        <span class="label label-rounded label-primary">{{-- <?= $count_user ?> --}}</span>
+                                        <span class="label label-rounded label-primary">{{-- {{$count_user}} --}}</span>
                                     </span>
                                     
                                 </a>

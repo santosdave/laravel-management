@@ -3,9 +3,14 @@
         <div class="card">
             <div class="card-header">
                 <h2>{{$title}}</h2>
-                <div class="d-flex flex-row-reverse"><button
-                        class="btn btn-sm btn-pill btn-outline-primary font-weight-bolder" id="createNewTherapist"><i
-                            class="fas fa-plus"></i>Add Therapist </button></div>
+                <div class="d-flex flex-row-reverse">
+                  <a href="/add_therapist">
+                    <button class="btn btn-sm btn-pill btn-outline-primary font-weight-bolder">
+                      <i class="fas fa-plus"></i>Add Therapist
+                    </button>
+                  </a>
+                  
+                </div>
             </div>
             <div class="card-body">
                 <div class="col-md-12">
@@ -15,11 +20,10 @@
                                 <tr>
                                     {{-- <th>No.</th> --}}
                                     <th>Name</th>
-                                    <th>Email</th>
                                     <th>Phone</th>
                                     <th>Address</th>
+                                    <th>Email</th>
                                     <th>Department</th>
-                                    <th>Level</th>
                                     <th style="width:90px;">Action</th>
                                 </tr>
                             </thead>
@@ -43,32 +47,25 @@
             </div>
         </div>
     </div>
-</div>
-
-<!-- Modal-->
-<div class="modal fade" id="modal-user" data-backdrop="static" tabindex="-1" role="dialog"
+  </div>
+  
+  <!-- Modal-->
+  <div class="modal fade" id="modal-user" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white" id="exampleModalLabel">Modal User</h5>
+                <h5 class="modal-title text-white" id="exampleModalLabel">Modal Department</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formUser" name="formUser">
+                <form id="formDepartment" name="formDepartment">
                     <div class="form-group">
-
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Nama"><br>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="email"><br>
-                        <select name="level" class="form-control" id="level">
-                            <option value="-">User Level</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Therapist</option>
-                        </select><br>
-                        <input type="text" name="password" class="form-control" placeholder="password"><br>
-                        <input type="hidden" name="user_id" id="user_id" value="">
+  
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Name"><br>
+                        <input type="text" name="details" class="form-control" id="details" placeholder="Details"><br>
                     </div>
                 </form>
             </div>
@@ -78,12 +75,12 @@
             </div>
         </div>
     </div>
-</div>
-
-
-
-@push('scripts')
-<script>
+  </div>
+  
+  
+  
+  @push('scripts')
+  <script>
     $('document').ready(function () {
         // success alert
         function swal_success() {
@@ -105,7 +102,7 @@
             })
         }
         // table serverside
-        var table = $('#tableUser').DataTable({
+        var table = $('#tableTherapist').DataTable({
             processing: false,
             serverSide: true,
             ordering: false,
@@ -113,24 +110,32 @@
             buttons: [
                 'copy', 'excel', 'pdf'
             ],
-            ajax: "{{ route('users.index') }}",
+            ajax: "{{ route('therapist.index') }}",
             columns: [{
-                    data: 'name',
+                    data: 'ther_name',
                     name: 'name'
                 },
                 {
-                    data: 'email',
+                    data: 'ther_phone',
+                    name: 'Phonenumber'
+                },
+                {
+                    data: 'ther_address',
+                    name: 'Address'
+                },
+                {
+                    data: 'ther_email',
                     name: 'email'
                 },
                 {
-                    data: 'level',
-                    name: 'level'
+                    data: 'ther_dept_id',
+                    name: 'department'
                 },
                 {
                     data: 'action',
                     name: 'action',
-                    orderable: false,
-                    searchable: false
+                    orderable: true,
+                    searchable: true
                 },
             ]
         });
@@ -141,54 +146,53 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        // initialize btn add
-        $('#createNewUser').click(function () {
-            $('#saveBtn').val("create user");
-            $('#user_id').val('');
-            $('#formUser').trigger("reset");
+       /*  // initialize btn add
+        $('#createNewDepartment').click(function () {
+            $('#saveBtn').val("create department");
+            $('#dept_id').val('');
+            $('#formDepartment').trigger("reset");
             $('#modal-user').modal('show');
-        });
+        }); */
         // initialize btn edit
-        $('body').on('click', '.editUser', function () {
-            var user_id = $(this).data('id');
-            $.get("{{route('users.index')}}" + '/' + user_id + '/edit', function (data) {
-                $('#saveBtn').val("edit-user");
+        $('body').on('click', '.editEmployee', function () {
+            var emp_id = $(this).data('id');
+            $.get("{{route('employee.index')}}" + '/' + emp_id + '/edit', function (data) {
+                $('#saveBtn').val("edit-employee");
                 $('#modal-user').modal('show');
-                $('#user_id').val(data.id);
-                $('#name').val(data.name);
-                $('#email').val(data.email);
-                $('#level').val(data.level);
+                $('#dept_id').val(data.emp_id);
+                $('#name').val(data.emp_name);
+                $('#details').val(data.emp_details);
             })
         });
         // initialize btn save
         $('#saveBtn').click(function (e) {
             e.preventDefault();
             $(this).html('Save');
-
+  
             $.ajax({
-                data: $('#formUser').serialize(),
-                url: "{{ route('users.store') }}",
+                data: $('#formDepartment').serialize(),
+                url: "{{ route('employee.store') }}",
                 type: "POST",
                 dataType: 'json',
                 success: function (data) {
-
-                    $('#formUser').trigger("reset");
+  
+                    $('#formDepartment').trigger("reset");
                     $('#modal-user').modal('hide');
                     swal_success();
                     table.draw();
-
+  
                 },
                 error: function (data) {
                     swal_error();
                     $('#saveBtn').html('Save Changes');
                 }
             });
-
+  
         });
         // initialize btn delete
-        $('body').on('click', '.deleteUser', function () {
-            var user_id = $(this).data("id");
-
+        $('body').on('click', '.deleteDepartment', function () {
+            var dept_id = $(this).data("id");
+  
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -201,7 +205,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "DELETE",
-                        url: "{{route('users.store')}}" + '/' + user_id,
+                        url: "{{route('department.store')}}" + '/' + dept_id,
                         success: function (data) {
                             swal_success();
                             table.draw();
@@ -213,11 +217,12 @@
                 }
             })
         });
-
+  
         // statusing
-
-
+  
+  
     });
-
-</script>
-@endpush
+  
+  </script>
+  @endpush
+  

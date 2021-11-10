@@ -44,9 +44,9 @@
                     <thead>
                       <tr>
                         <th>Sl</th>
-                        <th>Patient Name</th>
-                        <th>Patient Phone</th>
-                        <th>Doctor Name</th>
+                        <th>Client Name</th>
+                        <th>Client Phone</th>
+                        <th>Therapist Name</th>
                         <th>Schedule</th>
                         <th>Status</th>
                         <th>Action
@@ -65,8 +65,8 @@
                           {{$patient->out_p_name}}
                         </td>
                         <td>{{$patient->out_p_phone}}</td>
-                        <td>@php $doctor=collect($doctors)->where('doc_id',$appointment->app_doc_id)->first() @endphp
-                          {{$doctor->doc_name}}</td>
+                        <td>@php $therapy=collect($therapys)->where('doc_id',$appointment->app_doc_id)->first() @endphp
+                          {{$therapy->doc_name}}</td>
                         <td>{{$appointment->app_date}}</td>
                         <td>@if($appointment->app_status=='Pending')
                           <div class="btn-group">
@@ -135,10 +135,10 @@
             <div class="col-md-8">
               <div class="col-md-12">
                 <div class="form-group col-md-12">
-                  <label for="app_p_id"><b>Patient</b></label>
+                  <label for="app_p_id"><b>Client</b></label>
                   <div>
                     <select class="form-control" id="app_p_id" name="app_p_id">
-                      <option selected hidden>-----Choose Patient-----</option>
+                      <option selected hidden>-----Choose Client-----</option>
                       @foreach($patients as $patient)
                       <option value="{{$patient->out_p_id}}">{{$patient->out_p_name}} ({{$patient->out_p_s}})</option>
                       @endforeach
@@ -185,11 +185,11 @@
               </div>
 
               <div class="form-group col-md-12">
-                <label for="app_doc_id"><b>Doctor</b></label>
+                <label for="app_doc_id"><b>Therapist</b></label>
                 <div>
                   <select class="form-control" id="app_doc_id" name="app_doc_id">
-                    <option selected hidden>-----Choose Doctor-----</option>
-                    @foreach($doctors as $value)
+                    <option selected hidden>-----Choose Therapist-----</option>
+                    @foreach($therapys as $value)
                     <option value="{{$value->doc_id}}">{{$value->doc_name}}</option>
                     @endforeach
                   </select>
@@ -238,23 +238,23 @@
           <p style="display:inline" id="s_app_sl"></p>
         </div>
         <div>
-          <h6 style="display:inline"><b>Patient:</b></h6>
-          <p style="display:inline" id="s_p_name"></p>
+          <h6 style="display:inline"><b>Client:</b></h6>
+          <p style="display:inline" id="s_c_name"></p>
         </div>
         <div>
-          <h6 style="display:inline"><b>Patient Phone:</b></h6>
-          <p id="s_p_phone" style="display:inline"></p>
+          <h6 style="display:inline"><b>Client Phone:</b></h6>
+          <p id="s_c_phone" style="display:inline"></p>
         </div>
         <div>
-          <h6 style="display:inline"><b>Patient Age:</b></h6>
-          <p id="s_p_age" style="display:inline"></p>
+          <h6 style="display:inline"><b>Client Age:</b></h6>
+          <p id="s_c_age" style="display:inline"></p>
         </div>
         <div>
-          <h6 style="display:inline"><b>Doctor:</b></h6>
+          <h6 style="display:inline"><b>Therapist:</b></h6>
           <p id="s_doc_name" style="display:inline"></p>
         </div>
         <div>
-          <h6 style="display:inline"><b>Doctor Phone:</b></h6>
+          <h6 style="display:inline"><b>Therapist Phone:</b></h6>
           <p id="s_doc_phone" style="display:inline"></p>
         </div>
         <div>
@@ -279,10 +279,10 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    $(document).on("change", "#app_p_id", function() {
+    $(document).on("change", "#app_c_id", function() {
       var app_p_id = $(this).val();
       $.ajax({
-        url: "{{url('appointment')}}" + "/patient/" + app_p_id,
+        url: "{{url('appointment')}}" + "/client/" + app_p_id,
         type: 'get',
         dataType: "json",
         success: function(data) {
@@ -375,11 +375,11 @@
         success: function(data) {
           $("#s_app_date").text(data.appointment.app_date);
           $("#s_app_sl").text(data.appointment.app_sl);
-          $("#s_p_name").text(data.patient.out_p_name);
-          $("#s_p_phone").text(data.patient.out_p_phone);
-          $("#s_p_age").text(data.patient.out_p_age);
-          $("#s_doc_name").text(data.doctor.doc_name);
-          $("#s_doc_phone").text(data.doctor.doc_phone);
+          $("#s_c_name").text(data.client.c_name);
+          $("#s_c_phone").text(data.client.c_phone);
+          $("#s_c_age").text(data.client.c_age);
+          $("#s_ther_name").text(data.therapist.ther_name);
+          $("#s_ther_phone").text(data.therapist.ther_phone);
           $("#s_app_status").text(data.appointment.app_status);
           $("#s_app_note").text(data.appointment.app_message);
         }

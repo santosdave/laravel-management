@@ -4,7 +4,7 @@
         <!--begin::Logo-->
         <a href="#" class="brand-logo">
             {{-- <img alt="Logo" src="{{asset('metch')}}/media/logos/logo-light.png" /> --}}
-            <span class="text-center"><i class="fab fa-angrycreative fa-4x"></i></span>
+            <span class="text-center"><i class="fab  fa-2x">Physioclinic</i></span>
         </a>
         <!--end::Logo-->
         <!--begin::Toggle-->
@@ -262,7 +262,7 @@
                         <span class="menu-icon fas fa-cog">
                            
                         </span>
-                        <span class="menu-text">App Settings</span>
+                        <span class="menu-text">Profile Settings</span>
                     </a>
                 </li>	
             

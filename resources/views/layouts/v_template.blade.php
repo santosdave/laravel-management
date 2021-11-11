@@ -7,7 +7,7 @@
     <!-- Google Tag Manager -->
     <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
-    <title>Oryfikry | Boilerplate</title>
+    <title>Physioclinic | Therapy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -179,7 +179,7 @@
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted font-weight-bold mr-2">© <?= date('Y'); ?></span>
                             <a href="https://instagram.com/ory.fikry" target="_blank"
-                                class="text-dark-75 text-hover-primary">Ory Fikry | BoilerPlate</a>
+                                class="text-dark-75 text-hover-primary">Physioclinic | Therapy</a>
                         </div>
                         <!--end::Copyright-->
                     </div>

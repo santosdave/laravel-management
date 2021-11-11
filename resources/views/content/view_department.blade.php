@@ -58,7 +58,6 @@
 
                         <input type="text" name="name" class="form-control" id="dept_name" placeholder="Name"><br>
                         <input type="text" name="details" class="form-control" id="dept_details" placeholder="Details"><br>
-                        <input type="hidden" name="dept_id" id="dept_id" value="">
                     </div>
                 </form>
             </div>
@@ -130,9 +129,10 @@
         // initialize btn add
         $('#createNewDepartment').click(function () {
             $('#saveBtn').val("create department");
-            $('#dept_id').val('');
             $('#formDepartment').trigger("reset");
             $('#modal-user').modal('show');
+            $('#dept_name').val(data.dept_name);
+            $('#dept_details').val(data.dept_details);
         });
         // initialize btn edit
         $('body').on('click', '.editDepartment', function () {

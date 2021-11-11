@@ -51,7 +51,7 @@ class ClientController extends Controller
                 "status" => $status,
                 "data"   => $client,
             ];
-            $room_status=['room_status'=>'Alloted'];
+            $room_status=['room_status'=>'booked'];
             Room::where('room_id',$request->c_room_id)->update($room_status);
         }
         return response()->json($response, $status);

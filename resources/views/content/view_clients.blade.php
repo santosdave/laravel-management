@@ -48,7 +48,7 @@
                                                 <td>{{ $value->c_sex }}</td>
                                                 <td>{{ $value->c_age }}</td>
                                                 <td>{{ $value->c_phone }}</td>
-                                                <td>@php $therapy= collect($therapys)->where('ther_id',$value->c_ther_id)->first() @endphp
+                                                <td>@php $therapy= collect($therapist)->where('ther_id',$value->c_ther_id)->first() @endphp
                                                     {{$therapy->ther_name}}
                                                 </td>
                                                 <td>
@@ -171,7 +171,7 @@
                                     <select class="form-control" id="c_doc_id" name="c_doc_id">
                                             <option selected hidden>-----Choose Therapist-----</option>
                                             @foreach($therapist as $value)
-                                            <option value="{{$value->doc_id}}">{{$value->doc_name}}</option>
+                                            <option value="{{$value->ther_id}}">{{$value->ther_name}}</option>
                                             @endforeach
                                         </select>
                                     <span id="c_doc_id_error"></span>
@@ -196,6 +196,9 @@
                                     <div>
                                     <select class="form-control" id="c_room_id" name="c_room_id">
                                             <option selected hidden>Room</option>
+                                            @foreach($rooms as $rooms)
+                                            <option value="{{$rooms->room_id}}">{{$rooms->room_name}}</option>
+                                            @endforeach
                                         </select>
                                     <span id="c_room_id_error"></span>
                                     </div>
@@ -218,7 +221,7 @@
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
         <div class="modal-header" style="background-color:  #808080; height: 60px;">
-                           <h5 class="modal-title" style="color: white;">In Patient</h5>
+                           <h5 class="modal-title" style="color: white;">Client</h5>
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true" style="color: white;">&times;</span></button>
                        </div>
@@ -228,7 +231,7 @@
               <p style="display:inline" id="s_c_sl"></p>
             </div>
             <div>
-              <h6 style="display:inline"><b>Patient Name:</b></h6>
+              <h6 style="display:inline"><b>Client Name:</b></h6>
               <p style="display:inline" id="s_c_name"></p>
             </div>
             <div>
@@ -244,7 +247,7 @@
               <p id="s_c_phone" style="display:inline"></p>
             </div>
             <div>
-              <h6 style="display:inline"><b>Adress:</b></h6>
+              <h6 style="display:inline"><b>Address:</b></h6>
               <p id="s_c_adress" style="display:inline"></p>
             </div> 
               <h6 style="display:inline"><b>Reference:</b></h6>
@@ -294,6 +297,12 @@
             });
         });
 
+         // csrf token
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 		$(document).on("submit", "#form", function(e) {
 			e.preventDefault();
 			var data = $(this).serializeArray();

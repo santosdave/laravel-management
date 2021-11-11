@@ -48,13 +48,34 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
-        Department::updateOrCreate(['id' => $request->dept_id],
+        $id = $request->dept_id;
+        if($id){
+            Department::where('dept_id', $id)->update(
                 [
                  'dept_name' => $request->dept_name,
                  'dept_details' => $request->dept_details,
                 ]);        
 
-        return response()->json(['success'=>'Department saved successfully!']);
+            return response()->json(['success'=>'Department saved successfully!']);
+
+        }
+        else{
+            Department::create(
+                    [
+                    'dept_name' => $request->dept_name,
+                    'dept_details' => $request->dept_details,
+                   ]
+                    );
+                return response()->json(['success'=>'Department saved successfully!']);
+        }
+
+        /* Department::updateOrCreate(['id' => $request->dept_id],
+                [
+                 'dept_name' => $request->dept_name,
+                 'dept_details' => $request->dept_details,
+                ]);        
+
+        return response()->json(['success'=>'Department saved successfully!']); */
     }
 
     public function show($id)

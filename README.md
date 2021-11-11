@@ -1,12 +1,6 @@
 # Laravel 8 Boilerplate
 
 This template is for educational only
-## Features
-- SPA CRUD (no reload-reload club with ajax)
-- Serverside Datatable with Pdf/Excel
-- Sweetalert2
-- Metronic Template <a href="https://preview.keenthemes.com/metronic/demo1/index.html"> here </a>
-- Many More
 
 ### Installation
 

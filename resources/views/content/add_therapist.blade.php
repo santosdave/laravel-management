@@ -92,7 +92,7 @@
                       <label class="col-form-label col-md-3 col-sm-3  label-align" for="telephone">Photo <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6">
-                        <img id='previmage' style="height:140px;" src="{{asset('images/blankavatar.png')}}" alt="your image" class='img-responsive img-circle'>
+                        <img id='previmage' style="height:140px;" src="{{asset('images/avatar.jpg')}}" alt="your image" class='img-responsive img-circle'>
                         <br>
                         <input type="file" id="image" name="ther_img" onchange="readURL(this);" value="{{ old('ther_img') }}">
                         <p class="text-danger">{{$errors->first('ther_img')}}</p>

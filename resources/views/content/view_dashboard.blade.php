@@ -277,11 +277,11 @@
             ajax: "{{ route('department.index') }}",
             columns: [{
                     data: 'dept_name',
-                    name: 'name'
+                    name: 'dept_name'
                 },
                 {
                     data: 'dept_details',
-                    name: 'details'
+                    name: 'dept_details'
                 },
                 {
                     data: 'action',
@@ -411,23 +411,23 @@
             ajax: "{{ route('therapist.index') }}",
             columns: [{
                     data: 'ther_name',
-                    name: 'name'
+                    name: 'ther_name'
                 },
                 {
                     data: 'ther_phone',
-                    name: 'Phonenumber'
+                    name: 'ther_phone'
                 },
                 {
                     data: 'ther_address',
-                    name: 'Address'
+                    name: 'ther_address'
                 },
                 {
                     data: 'ther_email',
-                    name: 'email'
+                    name: 'ther_email'
                 },
                 {
                     data: 'ther_dept_id',
-                    name: 'department'
+                    name: 'ther_dept_id'
                 },
                 {
                     data: 'action',
@@ -557,27 +557,27 @@
           ajax: "{{ route('employee.index') }}",
           columns: [{
                   data: 'emp_name',
-                  name: 'name'
+                  name: 'emp_name'
               },
               {
                   data: 'emp_phone',
-                  name: 'Phonenumber'
+                  name: 'emp_phone'
               },
               {
                   data: 'emp_address',
-                  name: 'Address'
+                  name: 'emp_address'
               },
               {
                   data: 'emp_sex',
-                  name: 'sex'
+                  name: 'emp_sex'
               },
               {
                   data: 'emp_email',
-                  name: 'details'
+                  name: 'emp_email'
               },
               {
                   data: 'emp_role_id',
-                  name: 'role'
+                  name: 'emp_role_id'
               },
               {
                   data: 'action',

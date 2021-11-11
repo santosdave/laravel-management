@@ -105,11 +105,11 @@
             ajax: "{{ route('department.index') }}",
             columns: [{
                     data: 'dept_name',
-                    name: 'name'
+                    name: 'dept_name'
                 },
                 {
                     data: 'dept_details',
-                    name: 'details'
+                    name: 'dept_details'
                 },
                 {
                     data: 'action',

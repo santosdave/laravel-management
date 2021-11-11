@@ -113,23 +113,23 @@
             ajax: "{{ route('therapist.index') }}",
             columns: [{
                     data: 'ther_name',
-                    name: 'name'
+                    name: 'ther_name'
                 },
                 {
                     data: 'ther_phone',
-                    name: 'Phonenumber'
+                    name: 'ther_phone'
                 },
                 {
                     data: 'ther_address',
-                    name: 'Address'
+                    name: 'ther_address'
                 },
                 {
                     data: 'ther_email',
-                    name: 'email'
+                    name: 'ther_email'
                 },
                 {
                     data: 'ther_dept_id',
-                    name: 'department'
+                    name: 'ther_dept_id'
                 },
                 {
                     data: 'action',

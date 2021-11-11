@@ -114,27 +114,27 @@
           ajax: "{{ route('employee.index') }}",
           columns: [{
                   data: 'emp_name',
-                  name: 'name'
+                  name: 'emp_name'
               },
               {
                   data: 'emp_phone',
-                  name: 'Phonenumber'
+                  name: 'emp_phone'
               },
               {
                   data: 'emp_address',
-                  name: 'Address'
+                  name: 'emp_address'
               },
               {
                   data: 'emp_sex',
-                  name: 'sex'
+                  name: 'emp_sex'
               },
               {
                   data: 'emp_email',
-                  name: 'details'
+                  name: 'emp_email'
               },
               {
                   data: 'emp_role_id',
-                  name: 'role'
+                  name: 'emp_role_id'
               },
               {
                   data: 'action',

@@ -48,7 +48,7 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
-        Department::updateOrCreate(['dept_id' => $request->dept_id],
+        Department::updateOrCreate(['id' => $request->dept_id],
                 [
                  'dept_name' => $request->dept_name,
                  'dept_details' => $request->dept_details,

@@ -84,7 +84,7 @@
         <!--begin::Logo-->
         <a href="#">
             {{-- <img alt="Logo" src="{{asset('metch')}}/media/logos/logo-light.png" /> --}}
-            <div class="text-white"><i class="fab fa-angrycreative fa-4x"></i></div>
+            <div class="text-white"><i class="fab  fa-3x">Physioclinic</i></div>
         </a>
         <!--end::Logo-->
         <!--begin::Toolbar-->

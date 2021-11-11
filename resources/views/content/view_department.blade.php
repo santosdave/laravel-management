@@ -56,8 +56,9 @@
                 <form id="formDepartment" name="formDepartment">
                     <div class="form-group">
 
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Name"><br>
-                        <input type="text" name="details" class="form-control" id="details" placeholder="Details"><br>
+                        <input type="text" name="name" class="form-control" id="dept_name" placeholder="Name"><br>
+                        <input type="text" name="details" class="form-control" id="dept_details" placeholder="Details"><br>
+                        <input type="hidden" name="dept_id" id="dept_id" value="">
                     </div>
                 </form>
             </div>
@@ -140,8 +141,8 @@
                 $('#saveBtn').val("edit-department");
                 $('#modal-user').modal('show');
                 $('#dept_id').val(data.dept_id);
-                $('#name').val(data.dept_name);
-                $('#details').val(data.dept_details);
+                $('#dept_name').val(data.dept_name);
+                $('#dept_details').val(data.dept_details);
             })
         });
         // initialize btn save
